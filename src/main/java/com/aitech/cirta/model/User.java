@@ -1,5 +1,11 @@
 package com.aitech.cirta.model;
 
+/**
+ * Model de donnee de la table user
+ * 
+ * @author Nassim AIT BRAHAM
+ *
+ */
 public class User {
 
 	/**

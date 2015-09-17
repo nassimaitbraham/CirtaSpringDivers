@@ -9,6 +9,8 @@
 ">
 
 	<!-- Declaration des beans model -->
+	
+	<context:property-placeholder location="classpath:ldap.properties" />
 
 	<bean name="user" class="com.aitech.cirta.model.User">
 		<property name="prenom" value="nassim" />
@@ -33,6 +35,12 @@
 		<constructor-arg ref="roleDao" />
 	</bean>
 
+	<bean name="jndiService" class="com.aitech.cirta.service.LdapJndiServiceImpl">
+	
+	<constructor-arg type="User" ref="user"/>
+	
+	</bean>
+	
 	<!-- Declaration des beans Dao -->
 
 	<bean name="userDao" class="com.aitech.cirta.dao.UserDaoImpl">
