@@ -1,6 +1,5 @@
 package com.aitech.cirta.service;
 
-
 import java.util.Hashtable;
 
 import javax.naming.AuthenticationException;
@@ -14,6 +13,7 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.aitech.cirta.model.User;
@@ -26,6 +26,12 @@ import com.aitech.cirta.model.User;
  */
 
 public class LdapJndiServiceImpl implements LdapJndiService {
+
+	/**
+	 * Logger
+	 */
+
+	private static final Logger logger = Logger.getLogger(LdapJndiServiceImpl.class);
 
 	/**
 	 * Attribut
@@ -78,11 +84,17 @@ public class LdapJndiServiceImpl implements LdapJndiService {
 		try {
 			ctx = new InitialDirContext(env);
 		} catch (AuthenticationNotSupportedException ex) {
-			ex.printStackTrace();
+
+			logger.error("Authentification non supporter : ", ex);
+
 		} catch (AuthenticationException ex) {
-			ex.printStackTrace();
+
+			logger.error("Login/password n'est pas bon : ", ex);
+		
 		} catch (NamingException ex) {
-			ex.printStackTrace();
+		
+			logger.error("NamingException : ", ex);
+		
 		}
 
 		return ctx;
@@ -107,11 +119,11 @@ public class LdapJndiServiceImpl implements LdapJndiService {
 		while (results.hasMore()) {
 			SearchResult sr = (SearchResult) results.next();
 			Attributes attrs = sr.getAttributes();
-			
-			//Renseigner le model user
-			
+
+			// Renseigner le model user
+
 			user.setNom((String) attrs.get("givenName").get());
-			user.setPrenom((String)attrs.get("sn").get());
+			user.setPrenom((String) attrs.get("sn").get());
 		}
 
 		// Fermeture du context
