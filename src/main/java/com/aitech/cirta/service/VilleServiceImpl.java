@@ -2,8 +2,6 @@ package com.aitech.cirta.service;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import com.aitech.cirta.dao.VilleDao;
 import com.aitech.cirta.model.Ville;
 
@@ -13,7 +11,6 @@ import com.aitech.cirta.model.Ville;
  * @author Nassim AIT BRAHAM ( AITECH Corporate)
  *
  */
-
 
 public class VilleServiceImpl implements VilleService {
 
@@ -28,7 +25,7 @@ public class VilleServiceImpl implements VilleService {
 	 * 
 	 * @param villeDao
 	 */
-	
+
 	VilleServiceImpl(VilleDao villeDao) {
 		this.villeDao = villeDao;
 	}
@@ -40,7 +37,6 @@ public class VilleServiceImpl implements VilleService {
 	 * @return List<Ville>
 	 */
 
-	@Transactional(readOnly=true)
 	public List<Ville> getListVilles() {
 
 		return villeDao.getListVille();
