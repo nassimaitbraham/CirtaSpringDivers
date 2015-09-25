@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- Fichier de mapping de la table hotels et du model Hotels -->
+<hibernate-mapping package="com.aitech.cirta.model">
+
+	<class name="com.aitech.cirta.model.Hotels" table="hotels" lazy="true">
+
+		<!--Declaration de la cle primaire -->
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="categorie" column="categorie" />
+		
+		<property name="adresse" column="adresse" />
+		
+		<property name="telephone" column="telephone" />
+
+ 		<!-- Declaration 1-n -->
+        <many-to-one name="ville" column="id_ville" class="com.aitech.cirta.model.Ville"/>
+        
+   
+         
+        
+	</class>
+
+
+</hibernate-mapping>

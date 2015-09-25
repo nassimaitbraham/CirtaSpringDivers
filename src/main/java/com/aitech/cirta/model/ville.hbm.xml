@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- Fichier de mapping de la table ville et du model Ville -->
+<hibernate-mapping package="com.aitech.cirta.model">
+
+	<class name="com.aitech.cirta.model.Ville" table="ville" lazy="true">
+
+		<!-- Cle primaire de la table -->
+		<!-- generator native : hibernate choisi le generateur en fonction de la 
+			base (MySQL : identity) -->
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+
+		<!-- Declaration du champ nom de la table -->
+		<property name="nom" column="nom" />
+		
+		<!-- Reccupertion de la liste des hotels -->
+		
+		<set name="listHotels" lazy="false">
+			<key column="id" />
+			<one-to-many class="com.aitech.cirta.model.Hotels" />
+		</set>
+
+	</class>
+
+</hibernate-mapping>
+
